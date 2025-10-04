@@ -1,0 +1,22 @@
+.venv/
+
+# База даних SQLite
+db.sqlite3
+*.sqlite3
+
+# Кеш Python
+__pycache__/
+*.pyc
+
+# Папка для статичних файлів, що збираються командою collectstatic
+/static/
+/staticfiles/
+
+# Медіа файли (якщо ви не хочете їх зберігати в Git)
+/media/
+
+# Логи
+*.log
+
+# Специфічні файли для IDE
+.vscode/
