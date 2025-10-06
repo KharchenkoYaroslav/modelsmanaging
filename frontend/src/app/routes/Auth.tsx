@@ -16,8 +16,10 @@ const Auth: React.FC<AuthProps> = ({ onAuthSuccess }) => {
   useEffect(() => {
     axios.defaults.withCredentials = true;
     const getCsrfToken = async () => {
-      const { data } = await axios.get("/api/auth/csrf-token/");
-      axios.defaults.headers.common["X-CSRFToken"] = data.csrfToken;
+      if (!axios.defaults.headers.common["X-CSRFToken"]) {
+        const { data } = await axios.get("/api/auth/csrf-token/");
+        axios.defaults.headers.common["X-CSRFToken"] = data.csrfToken;
+      }
     };
     getCsrfToken();
   }, []);
