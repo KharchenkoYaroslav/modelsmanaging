@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios, { AxiosError } from "axios";
-import styles from "../app.module.scss";
+import "../components/_auth.scss";
 
 interface AuthProps {
   onAuthSuccess: () => void;
@@ -101,7 +101,7 @@ const Auth: React.FC<AuthProps> = ({ onAuthSuccess }) => {
   };
 
   return (
-    <div className={styles.auth}>
+    <div className="auth">
       <div>
         <h1>{isRegister ? "Register" : "Login"}</h1>
         <div>

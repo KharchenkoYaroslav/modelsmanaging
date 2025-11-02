@@ -1,0 +1,71 @@
+@use "sass:color";
+@use '../_variables.scss' as *;
+
+.simulation-create {
+  max-width: 800px;
+  max-height: 80vh; /* Обмежуємо висоту, щоб уникнути прокрутки всього вікна */
+  overflow-y: auto; /* Дозволяємо прокрутку лише всередині форми, якщо вона занадто велика */
+  margin: 0 auto;
+  padding: 15px;
+  background-color: $color-dark-2;
+  border-radius: 8px;
+
+  h2, h3 {
+    color: $color-white;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: $color-grey-3;
+    }
+
+    input[type="number"],
+    input[type="text"],
+    input[type="color"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid $color-dark-3;
+      border-radius: 4px;
+      background-color: $color-dark-3;
+      color: $color-white;
+      box-sizing: border-box;
+    }
+    
+    input[type="color"] {
+        height: 40px;
+        padding: 0;
+    }
+  }
+
+  .error-message {
+    color: $color-red-1;
+    margin-bottom: 15px;
+  }
+
+  button[type="submit"] {
+    display: block;
+    width: fit-content;
+    margin: 15px auto 0; /* Центрування кнопки */
+    background-color: $color-white;
+    color: $color-dark-1;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+
+    &:disabled {
+      background-color: $color-dark-3;
+      cursor: not-allowed;
+    }
+  }
+}

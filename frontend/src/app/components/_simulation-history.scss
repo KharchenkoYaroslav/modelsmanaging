@@ -1,0 +1,64 @@
+@use "sass:color";
+@use '../_variables.scss' as *;
+
+.simulation-history {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  h2 {
+    text-align: center;
+    color: $color-white;
+    margin-bottom: 20px;
+  }
+
+  .history-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: $color-dark-2;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: color.scale($color-dark-2, $lightness: 10%);
+    }
+
+    .model-type {
+      font-weight: 700;
+      width: 150px;
+    }
+
+    .created-at {
+      font-size: 0.9em;
+      color: $color-grey-3;
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .status {
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.8em;
+      font-weight: 600;
+    }
+
+    .stable {
+      background-color: color.scale($color-green-1, $alpha: -70%);
+      color: $color-green-1;
+    }
+
+    .unstable {
+      background-color: color.scale($color-red-1, $alpha: -70%);
+      color: $color-red-1;
+    }
+  }
+}

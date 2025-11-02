@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "variables" as *;
+
 body {
   background-color: $color-blue-3;
   font-family: 'Montserrat Alternates';
