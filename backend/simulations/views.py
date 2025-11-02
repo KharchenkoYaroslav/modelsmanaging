@@ -21,6 +21,9 @@ class SimulationCreateView(APIView):
         params = validated_data.get("params", {})
 
         try:
+            result_data = {}
+            results_json = {}
+
             if model == Simulation.ModelTypes.LORENZ:
                 sigma = float(params.get("sigma", 10))
                 rho = float(params.get("rho", 28))
@@ -29,24 +32,36 @@ class SimulationCreateView(APIView):
                 dt = float(params.get("dt", 0.01))
 
                 result_data = physics.lorenz_attractor(x0, y0, z0, sigma=sigma, rho=rho, beta=beta, dt=dt, steps=steps)
-                x, y, z = zip(*result_data["points"])
-                results_json = {"x": x, "y": y, "z": z, "color": color}
+                points = result_data.get("points", [])
+                if points:
+                    x, y, z = map(list, zip(*points))
+                    results_json = {"x": x, "y": y, "z": z, "color": color}
+                else:
+                    results_json = {"x": [], "y": [], "z": [], "color": color}
             elif model == Simulation.ModelTypes.HENON:
                 a = float(params.get("a", 1.4))
                 b = float(params.get("b", 0.3))
                 x0, y0 = params.get("initial", [0.1, 0.3])
 
                 result_data = physics.henon_map(x0, y0, a=a, b=b, steps=steps)
-                x, y = zip(*result_data["points"])
-                results_json = {"x": x, "y": y, "color": color}
+                points = result_data.get("points", [])
+                if points:
+                    x, y = map(list, zip(*points))
+                    results_json = {"x": x, "y": y, "color": color}
+                else:
+                    results_json = {"x": [], "y": [], "color": color}
             elif model == Simulation.ModelTypes.THOMAS:
                 b = float(params.get("b", 0.18))
                 x0, y0, z0 = params.get("initial", [1, 1, 1])
                 dt = float(params.get("dt", 0.01))
                 
                 result_data = physics.thomas_attractor(x0, y0, z0, b=b, dt=dt, steps=steps)
-                x, y, z = zip(*result_data["points"])
-                results_json = {"x": x, "y": y, "z": z, "color": color}
+                points = result_data.get("points", [])
+                if points:
+                    x, y, z = map(list, zip(*points))
+                    results_json = {"x": x, "y": y, "z": z, "color": color}
+                else:
+                    results_json = {"x": [], "y": [], "z": [], "color": color}
 
             simulation = Simulation.objects.create(
                 user=request.user,

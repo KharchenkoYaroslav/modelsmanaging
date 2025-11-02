@@ -17,6 +17,7 @@ __pycache__/
 
 # Логи
 *.log
+*.coverage
 
 # Специфічні файли для IDE
 .vscode/
