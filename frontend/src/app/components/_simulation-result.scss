@@ -1,0 +1,126 @@
+@use "sass:color";
+@use '../_variables.scss' as *;
+
+.simulation-result {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  padding: 20px;
+  background-color: $color-dark-2;
+  border-radius: 8px;
+  margin-top: 20px;
+
+  .simulation-layout {
+    display: flex;
+    gap: 20px;
+    min-height: 500px; /* Забезпечуємо мінімальну висоту для графіка */
+    flex-grow: 1;
+
+    .info-column {
+      flex: 0 0 400px; /* Фіксована ширина для інформації */
+      overflow-y: auto;
+    }
+
+    .plot-column {
+      flex: 1;
+      min-width: 0; /* Запобігає переповненню flex-контейнера */
+      background-color: $color-dark-3;
+      height: 100%;
+    }
+  }
+
+  h3 {
+    color: $color-white;
+    margin-bottom: 15px;
+  }
+
+  .stable {
+    color: $color-green-1;
+    font-weight: 600;
+  }
+
+  .unstable {
+    color: $color-red-1;
+    font-weight: 600;
+  }
+
+  .params-display {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid $color-dark-3;
+    border-radius: 4px;
+    color: $color-grey-3;
+    
+    h4 {
+        margin-bottom: 10px;
+        color: $color-grey-1;
+    }
+  }
+
+  .visualization-controls {
+    display: flex;
+    flex-wrap: wrap; /* Дозволяємо перенесення кнопок */
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    button {
+        background-color: $color-dark-3;
+        color: $color-white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: color.scale($color-dark-3, $lightness: 10%);
+        }
+
+        &.active {
+            background-color: $color-blue-4;
+        }
+    }
+  }
+
+  .visualization-container {
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .plot-wrapper {
+    width: 100%;
+    height: 100%;
+    canvas {
+      max-width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  .visualization-placeholder {
+    padding: 50px;
+    background-color: $color-dark-3;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px dashed $color-grey-1;
+  }
+}
+
+.back-button {
+    background-color: $color-dark-3;
+    color: $color-white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: color.scale($color-dark-3, $lightness: 10%);
+    }
+}
