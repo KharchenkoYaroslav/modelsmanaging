@@ -1,30 +1,26 @@
 export type ModelType = 'lorenz' | 'henon' | 'thomas';
 
-// --- Specific Model Parameters ---
-
 export interface LorenzParams {
     sigma: number;
     rho: number;
     beta: number;
-    initial: [number, number, number]; // [x0, y0, z0]
+    initial: [number, number, number];
     dt?: number;
 }
 
 export interface HenonParams {
     a: number;
     b: number;
-    initial: [number, number]; // [x0, y0]
+    initial: [number, number];
 }
 
 export interface ThomasParams {
     b: number;
-    initial: [number, number, number]; // [x0, y0, z0]
+    initial: [number, number, number];
     dt?: number;
 }
 
 export type SpecificParams = LorenzParams | HenonParams | ThomasParams;
-
-// --- API Request/Response Types ---
 
 export interface SimulationInputParams<T extends SpecificParams = SpecificParams> {
     model: ModelType;
@@ -36,7 +32,7 @@ export interface SimulationInputParams<T extends SpecificParams = SpecificParams
 export interface SimulationResult {
     x: number[];
     y: number[];
-    z?: number[]; // Only for 3D models (Lorenz, Thomas)
+    z?: number[]; 
     color: string;
 }
 
