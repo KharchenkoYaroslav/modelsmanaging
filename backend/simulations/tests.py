@@ -1,32 +1,11 @@
-import os
-import sys
-import django
-from pathlib import Path
-
-current_dir = Path(__file__).resolve().parent
-root_dir = current_dir.parent
-sys.path.append(str(root_dir))
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
-django.setup()
-
 import pytest
 from unittest.mock import patch
 from django.urls import reverse
 from rest_framework import status
-from rest_framework.test import APIClient
-from django.contrib.auth.models import User
 from simulations.models import Simulation
 
 pytestmark = pytest.mark.django_db
 
-@pytest.fixture
-def api_client_unit():
-    return APIClient()
-
-@pytest.fixture
-def mock_user():
-    return User.objects.create_user(username='testuser', password='password')
 
 class TestSimulationCreateViewUnit:
     @patch('simulations.views.physics.lorenz_attractor')
